@@ -14,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class Login {
+
     @Column(unique = true)
     private String username;
     @Column(nullable = false)
