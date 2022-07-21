@@ -14,22 +14,22 @@ public class Data <T> {
     private T body;
     private ErrorDto errorDto;
     private T total;
-    private Boolean isOK;
+    private boolean success;
 
     public Data(T body) {
         this.body = body;
-        this.isOK = true;
+        this.success = true;
     }
 
-    public Data(T body, T total, Boolean isOK) {
+    public Data(T body, T total, Boolean success) {
         this.body = body;
         this.total = total;
-        this.isOK = true;
+        this.success = true;
     }
 
     public Data(ErrorDto errorDto) {
         this.errorDto = errorDto;
-        this.isOK = false;
+        this.success = false;
     }
 
     public static ErrorDto errorBuilder() {

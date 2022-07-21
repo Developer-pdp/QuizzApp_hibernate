@@ -3,7 +3,6 @@ package uz.team_dev.domain.auth.quiz;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import lombok.*;
-import uz.team_dev.domain.auth.subject.Subject;
 
 import java.util.UUID;
 
@@ -21,8 +20,6 @@ public class Quiz {
 
     @Builder.Default
     private UUID quiz_id = UUID.randomUUID();
-    @ManyToOne
-    private Subject subject;
 
 
 }

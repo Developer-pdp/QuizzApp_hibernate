@@ -8,7 +8,6 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.reflections.Reflections;
-
 import java.util.Properties;
 
 import static org.reflections.scanners.Scanners.SubTypes;
@@ -32,7 +31,6 @@ public class HibernateJavaConfigurer {
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.HBM2DDL_AUTO, "update");
                 settings.put(Environment.FORMAT_SQL, "true");
-// Abdulloh
 
                 // HikariCP settings
 
@@ -58,9 +56,6 @@ public class HibernateJavaConfigurer {
 
                 reflections.get(SubTypes.of(TypesAnnotated.with(Entity.class)).asClass())
                         .forEach(sources::addAnnotatedClass);
-
-
-
 
                 // Create Metadata
                 Metadata metadata = sources.getMetadataBuilder().build();
