@@ -14,7 +14,6 @@ public class  Fullname {
 
     private String first_name;
     private String last_name;
+    private String middle_name;
 
-    @Column(unique = true)
-    private String username;
 }
