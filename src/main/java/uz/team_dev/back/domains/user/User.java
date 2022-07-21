@@ -1,9 +1,12 @@
 package uz.team_dev.back.domains.user;
 
 import lombok.*;
-import uz.jl.back.enums.Language;
-import uz.jl.back.enums.Role;
+
+import uz.team_dev.back.enums.Language;
+import uz.team_dev.back.enums.Role;
 import uz.team_dev.back.domains.Domain;
+import uz.team_dev.back.enums.Language;
+import uz.team_dev.back.enums.Role;
 
 @Setter
 @Getter

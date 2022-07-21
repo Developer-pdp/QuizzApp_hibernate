@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import uz.jl.back.vo.auth.AuthUserVO;
+import uz.team_dev.back.vo.auth.AuthUserVO;
 
 @Getter
 @Setter
