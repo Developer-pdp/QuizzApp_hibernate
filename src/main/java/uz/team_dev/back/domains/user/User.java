@@ -1,9 +1,11 @@
 package uz.team_dev.back.domains.user;
 
+import jakarta.persistence.*;
 import lombok.*;
-import uz.jl.back.enums.Language;
-import uz.jl.back.enums.Role;
+import uz.team_dev.back.domains.Auditable;
 import uz.team_dev.back.domains.Domain;
+import uz.team_dev.back.enums.Language;
+import uz.team_dev.back.enums.Role;
 
 @Setter
 @Getter
@@ -11,11 +13,22 @@ import uz.team_dev.back.domains.Domain;
 @NoArgsConstructor
 @Builder
 @ToString
-public class User implements Domain {
-    private long id;
-    private String username;
-    private String password;
+@Entity
+@Table(name = "users")
+public class User extends Auditable implements Domain {
+
+    @Embedded
+    private Fullname fullname;
+    @Embedded
+    private Login login;
+
+    @Enumerated(EnumType.STRING)
     private Language language;
-    private Role role;
+
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private Role role = Role.STUDENT;
+
+    @Column(columnDefinition = "boolean default true")
     private boolean active;
 }

@@ -1,6 +1,8 @@
 package uz.team_dev.back.domains.subject;
 
+import jakarta.persistence.Entity;
 import lombok.*;
+import uz.team_dev.back.domains.Auditable;
 
 @Setter
 @Getter
@@ -8,8 +10,9 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-public class Subject {
-    private long id;
-    private String name;
+@Entity
+public class Subject extends Auditable {
+
+
     private String description;
 }

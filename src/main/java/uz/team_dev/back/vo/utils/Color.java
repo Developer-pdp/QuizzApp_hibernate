@@ -1,4 +1,4 @@
-package uz.team_dev.front.utils;
+package uz.team_dev.back.vo.utils;
 
 public interface Color {
     String BLACK_BACKGROUND = "\u001B[40m";
@@ -21,3 +21,4 @@ public interface Color {
     String CYAN = "\u001B[36m";
     String WHITE = "\u001B[37m";
 }
+

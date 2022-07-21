@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class UserDao implements GenericDAO<User> {
 
-    private UserDao instance;
+    private static UserDao instance;
 
     public static UserDao getInstance() {
         if (instance == null) instance = new UserDao();

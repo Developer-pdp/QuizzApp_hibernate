@@ -9,7 +9,6 @@ public interface GenericDAO<T extends Domain> {
 
     Gson gson = new Gson();
 
-
      List<T> getAll();
 
     Long persist(T entity);
