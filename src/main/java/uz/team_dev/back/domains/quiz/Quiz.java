@@ -2,8 +2,8 @@ package uz.team_dev.back.domains.quiz;
 
 
 import lombok.*;
-import uz.jl.back.enums.Language;
-import uz.jl.back.enums.Level;
+import uz.team_dev.back.enums.Language;
+import uz.team_dev.back.enums.Level;
 
 @Setter
 @Getter
