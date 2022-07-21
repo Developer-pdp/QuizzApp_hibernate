@@ -32,7 +32,7 @@ public class HibernateJavaConfigurer {
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.HBM2DDL_AUTO, "update");
                 settings.put(Environment.FORMAT_SQL, "true");
-
+// Abdulloh
 
                 // HikariCP settings
 
