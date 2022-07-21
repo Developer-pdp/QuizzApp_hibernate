@@ -1,8 +1,7 @@
 package uz.team_dev.back.domains.subject;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
-import uz.team_dev.back.domains.Auditable;
 
 @Setter
 @Getter
@@ -11,7 +10,11 @@ import uz.team_dev.back.domains.Auditable;
 @Builder
 @ToString
 @Entity
-public class Subject extends Auditable {
-
+public class Subject {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String name;
     private String description;
 }

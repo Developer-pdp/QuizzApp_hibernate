@@ -1,40 +1,48 @@
 package uz.team_dev.back.dao;
 
-
 import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
+import uz.team_dev.back.domains.quiz.Quiz;
 import uz.team_dev.back.domains.subject.Subject;
-import uz.team_dev.back.domains.user.User;
 
 import java.util.List;
 import java.util.Optional;
 
-public class UserDao implements GenericDAO<User> {
+/**
+ * name : Abul_dev
+ * date : 21, Thursday, 2022
+ * project name : QuizzApp_hibernate
+ */
+public class QuizDAO implements GenericDAO<Quiz> {
 
-    private static UserDao instance;
 
-    public static UserDao getInstance() {
-        if (instance == null) instance = new UserDao();
+    private static SubjectDAO instance;
+
+    public static SubjectDAO getInstance() {
+        if (instance == null) instance = new SubjectDAO();
         return instance;
     }
 
 
+
     @Override
-    public Optional<List<User>> getAll() {
+    public Optional<List<Quiz>> getAll() {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        List<User> users = session.createQuery("select t from User t ", User.class).getResultList();
+        List<Quiz> quiz = session.createQuery("select t from Quiz t  ", Quiz.class).getResultList();
         session.getTransaction().commit();
         session.close();
-        return Optional.ofNullable(users);
+        System.out.println("quiz = " + quiz);
+        return Optional.ofNullable(quiz);
+
 
     }
 
     @Override
-    public Optional<Long> persist(User entity) {
+    public Optional<Long> persist(Quiz entity) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -42,7 +50,6 @@ public class UserDao implements GenericDAO<User> {
         session.getTransaction().commit();
         session.close();
         return Optional.empty();
-
     }
 
     @Override
@@ -58,7 +65,7 @@ public class UserDao implements GenericDAO<User> {
     }
 
     @Override
-    public Optional<Boolean> update(User entity) {
+    public Optional<Boolean> update(Quiz entity) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -70,17 +77,16 @@ public class UserDao implements GenericDAO<User> {
     }
 
     @Override
-    public Optional<User> find(Long id) {
+    public Optional<Quiz> find(Long id) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("select t from User t where t.id =:id", User.class);
+        Query query = session.createQuery("select t from Quiz t where t.id =:id", Quiz.class);
         query.setParameter("id", id);
-        User user = (User) query.getSingleResult();
-        System.out.println("user = " + user);
+        Quiz quiz =(Quiz) query.getSingleResult();
+        System.out.println("quiz = " + quiz);
         session.getTransaction().commit();
         session.close();
-        return Optional.ofNullable(user);
-
+        return Optional.ofNullable(quiz);
     }
 }

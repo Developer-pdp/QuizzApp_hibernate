@@ -8,8 +8,7 @@ import uz.team_dev.back.enums.Language;
 import uz.team_dev.back.enums.Role;
 import uz.team_dev.back.vo.utils.Reader;
 import uz.team_dev.back.vo.utils.Writer;
-import uz.team_dev.front.utils.Reader;
-import uz.team_dev.front.utils.Writer;
+
 
 import java.util.Objects;
 
@@ -32,7 +31,7 @@ public class MainMenu {
     private static void signup() {
 
         User user = User.builder()
-                .fullname(new Fullname("","",""))
+                .fullna`me(new Fullname("","",""))
                 .login(new Login("",""))
                 .language(Language.EN)
                 .role(Role.ADMIN)

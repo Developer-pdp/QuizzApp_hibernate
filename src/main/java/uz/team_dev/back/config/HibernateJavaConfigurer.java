@@ -52,7 +52,7 @@ public class HibernateJavaConfigurer {
                 // Create MetadataSources
                 MetadataSources sources = new MetadataSources(registry);
 
-                Reflections reflections = new Reflections("uz.team_dev.domain.auth");
+                Reflections reflections = new Reflections("uz.team_dev");
 
                 reflections.get(SubTypes.of(TypesAnnotated.with(Entity.class)).asClass())
                         .forEach(sources::addAnnotatedClass);
