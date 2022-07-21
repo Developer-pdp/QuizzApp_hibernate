@@ -33,6 +33,4 @@ public class Quiz extends Auditable implements Domain {
     @Builder.Default
     private Language language = Language.UZ;
 
-    @Column(nullable = false)
-    private int code;
 }

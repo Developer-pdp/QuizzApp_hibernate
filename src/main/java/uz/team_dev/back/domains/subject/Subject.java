@@ -13,6 +13,5 @@ import uz.team_dev.back.domains.Auditable;
 @Entity
 public class Subject extends Auditable {
 
-
     private String description;
 }
