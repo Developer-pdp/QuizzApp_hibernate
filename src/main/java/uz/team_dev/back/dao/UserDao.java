@@ -6,28 +6,40 @@ import uz.team_dev.back.domains.user.User;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDao extends DAO<User> {
+public class UserDao implements GenericDAO<User> {
 
-    public Long save(User user) {
-        user.setId(System.currentTimeMillis());
-        generic_list.add(user);
-        return user.getId();
+    private UserDao instance;
+
+    public static UserDao getInstance() {
+        if (instance == null) instance = new UserDao();
+        return instance;
     }
 
+    @Override
     public List<User> getAll() {
-        return generic_list;
+        return null;
     }
 
-    public Optional<User> findByUsername(String username) {
-        return generic_list.stream()
-                .filter(user -> user.getUsername().equalsIgnoreCase(username))
-                .findFirst();
+    @Override
+    public Long persist(User entity) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return false;
+    }
+
+    @Override
+    public boolean update(Long id) {
+        return false;
+    }
+
+    @Override
+    public User find(Long id) {
+        return null;
     }
 
 
-    public Optional<User> findById(Long id) {
-        return generic_list.stream()
-                .filter(user -> user.getId() == id)
-                .findFirst();
-    }
+
 }
