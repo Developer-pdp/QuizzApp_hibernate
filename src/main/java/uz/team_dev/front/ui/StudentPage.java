@@ -1,7 +1,6 @@
 package uz.team_dev.front.ui;
 
-public class AdminPage {
+public class StudentPage {
     public static void menu() {
-
     }
 }

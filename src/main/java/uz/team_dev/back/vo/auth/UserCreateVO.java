@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class AuthUserCreateVO {
+public class UserCreateVO {
     private String username;
     private String password;
     private String language;

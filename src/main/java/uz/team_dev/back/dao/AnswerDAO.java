@@ -30,12 +30,12 @@ public class AnswerDAO implements GenericDAO<MultipleChoiceAnswer>{
     }
 
     @Override
-    public Optional<Boolean> update(Long id) {
+    public Optional<Boolean> update(MultipleChoiceAnswer entity) {
         return Optional.empty();
     }
 
     @Override
-    public MultipleChoiceAnswer find(Long id) {
+    public Optional<MultipleChoiceAnswer> find(Long id) {
         return null;
     }
 }

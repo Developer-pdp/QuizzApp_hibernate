@@ -1,13 +1,9 @@
 package uz.team_dev.back.dao;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
 import uz.team_dev.back.domains.questions.ReOrder;
-import uz.team_dev.back.domains.user.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,7 +52,7 @@ public class ReOrderDAO implements GenericDAO<ReOrder>{
     }
 
     @Override
-    public Optional<Boolean> update(Long id) {
+    public Optional<Boolean> update(ReOrder entity) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -67,13 +63,11 @@ public class ReOrderDAO implements GenericDAO<ReOrder>{
     }
 
     @Override
-    public ReOrder find(Long id) {
+    public Optional<ReOrder> find(Long id) {
 
        return null;
     }
 
-    public static void main(String[] args) {
 
-    }
 
 }

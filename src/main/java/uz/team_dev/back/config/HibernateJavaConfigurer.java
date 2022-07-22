@@ -8,6 +8,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.reflections.Reflections;
+import uz.team_dev.back.domains.Auditable;
+import uz.team_dev.back.domains.quiz.Quiz;
+
 import java.util.Properties;
 
 import static org.reflections.scanners.Scanners.SubTypes;
@@ -25,7 +28,7 @@ public class HibernateJavaConfigurer {
                 Properties settings = new Properties();
 
                 settings.put(Environment.DRIVER, "org.postgresql.Driver");
-                settings.put(Environment.URL, "jdbc:postgresql://localhost:5432/quizzdb");
+                settings.put(Environment.URL, "jdbc:postgresql://localhost:5432/quizdb");
                 settings.put(Environment.USER, "postgres");
                 settings.put(Environment.PASS, "yusupov2002");
                 settings.put(Environment.SHOW_SQL, "true");
@@ -52,10 +55,13 @@ public class HibernateJavaConfigurer {
                 // Create MetadataSources
                 MetadataSources sources = new MetadataSources(registry);
 
-                Reflections reflections = new Reflections("uz.team_dev");
+                sources.addAnnotatedClass(Quiz.class);
+                sources.addAnnotatedClass(Auditable.class);
+                Reflections reflections = new Reflections("uz.team_dev.back.domains");
 
                 reflections.get(SubTypes.of(TypesAnnotated.with(Entity.class)).asClass())
                         .forEach(sources::addAnnotatedClass);
+
 
                 // Create Metadata
                 Metadata metadata = sources.getMetadataBuilder().build();

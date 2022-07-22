@@ -19,6 +19,7 @@ public interface GenericDAO<T extends Domain> {
 
     Optional<Boolean> update(T entity);
 
+
     Optional<T> find(Long id);
 
 }

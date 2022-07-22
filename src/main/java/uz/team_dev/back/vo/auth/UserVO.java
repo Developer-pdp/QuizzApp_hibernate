@@ -10,7 +10,7 @@ import uz.team_dev.back.enums.Role;
 @Getter
 @Setter
 @Builder
-public class AuthUserVO {
+public class UserVO {
     private long id;
     private String username;
     private Language language;

@@ -1,10 +1,10 @@
-package uz.team_dev.back.config;
+package uz.team_dev.front.ui;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import uz.team_dev.back.vo.auth.AuthUserVO;
+import uz.team_dev.back.vo.auth.UserVO;
 
 @Getter
 @Setter
@@ -12,7 +12,7 @@ import uz.team_dev.back.vo.auth.AuthUserVO;
 public class UserSession {
     private static UserSession instance;
 
-    public static UserSession getInstance() {
+    public static UserSession getSession() {
         synchronized (UserSession.class) {
             if (instance == null) {
                 instance = new UserSession();
@@ -20,6 +20,6 @@ public class UserSession {
         }
         return instance;
     }
-
-    private AuthUserVO userVO;
+    
+    private UserVO userVO;
 }

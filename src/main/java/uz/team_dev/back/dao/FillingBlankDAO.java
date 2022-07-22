@@ -30,12 +30,12 @@ public class FillingBlankDAO implements  GenericDAO<FillingBlank>{
     }
 
     @Override
-    public Optional<Boolean> update(Long id) {
+    public Optional<Boolean> update(FillingBlank entity) {
         return Optional.empty();
     }
 
     @Override
-    public FillingBlank find(Long id) {
+    public Optional<FillingBlank> find(Long id) {
         return null;
     }
 }

@@ -30,12 +30,12 @@ public class MatchDAO implements GenericDAO<Match>{
     }
 
     @Override
-    public Optional<Boolean> update(Long id) {
+    public Optional<Boolean> update(Match entity) {
         return Optional.empty();
     }
 
     @Override
-    public Match find(Long id) {
+    public Optional<Match> find(Long id) {
         return null;
     }
 }

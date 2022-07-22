@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
 import uz.team_dev.back.domains.subject.Subject;
 import uz.team_dev.back.domains.user.User;
+import uz.team_dev.back.vo.auth.LoginVO;
+import uz.team_dev.back.vo.auth.UserVO;
 
 import java.util.List;
 import java.util.Optional;
@@ -82,5 +84,9 @@ public class UserDao implements GenericDAO<User> {
         session.close();
         return Optional.ofNullable(user);
 
+    }
+
+    public Optional<UserVO> login(LoginVO loginVO) {
+        return Optional.empty();
     }
 }

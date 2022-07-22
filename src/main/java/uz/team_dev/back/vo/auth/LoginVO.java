@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthLoginVO {
+public class LoginVO {
     private String username;
     private String password;
 }

@@ -1,20 +1,24 @@
 package uz.team_dev.back.domains;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import lombok.Builder;
+import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@Builder(builderMethodName = "childBuilder")
 @MappedSuperclass
 public class Auditable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Builder.Default

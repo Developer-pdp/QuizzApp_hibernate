@@ -31,12 +31,12 @@ public class MultipleChoiceDAO implements GenericDAO<MultipleChoice>{
     }
 
     @Override
-    public Optional<Boolean> update(Long id) {
+    public Optional<Boolean> update(MultipleChoice entity) {
         return Optional.empty();
     }
 
     @Override
-    public MultipleChoice find(Long id) {
+    public Optional<MultipleChoice> find(Long id) {
         return null;
     }
 }
