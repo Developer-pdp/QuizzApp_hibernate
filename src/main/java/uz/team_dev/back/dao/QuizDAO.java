@@ -64,6 +64,8 @@ public class QuizDAO implements GenericDAO<Quiz> {
 
     }
 
+
+
     @Override
     public Optional<Boolean> update(Quiz entity) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();

@@ -2,6 +2,7 @@ package uz.team_dev.back.domains.user;
 
 import lombok.*;
 
+import uz.team_dev.back.domains.Auditable;
 import uz.team_dev.back.domains.Domain;
 import uz.team_dev.back.enums.Language;
 import uz.team_dev.back.enums.Role;
@@ -12,7 +13,7 @@ import uz.team_dev.back.enums.Role;
 @NoArgsConstructor
 @Builder
 @ToString
-public class User implements Domain {
+public class User extends Auditable implements Domain {
     private long id;
     private String username;
     private String password;
