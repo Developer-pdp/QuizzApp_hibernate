@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.team_dev.back.vo.auth.AuthUserVO;
 
-
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

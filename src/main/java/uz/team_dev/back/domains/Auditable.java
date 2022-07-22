@@ -1,6 +1,7 @@
 package uz.team_dev.back.domains;
 
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
 @MappedSuperclass
 public class Auditable {
     @Id
