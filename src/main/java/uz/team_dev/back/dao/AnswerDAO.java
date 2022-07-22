@@ -1,12 +1,11 @@
 package uz.team_dev.back.dao;
 
-
-import uz.team_dev.back.domains.user.User;
+import uz.team_dev.back.domains.questions.MultipleChoiceAnswer;
 
 import java.util.List;
 import java.util.Optional;
 
-public class UserDao implements GenericDAO<User> {
+public class AnswerDAO implements GenericDAO<MultipleChoiceAnswer>{
 
     private static UserDao instance;
 
@@ -15,14 +14,13 @@ public class UserDao implements GenericDAO<User> {
         return instance;
     }
 
-
     @Override
-    public Optional<List<User>> getAll() {
+    public Optional<List<MultipleChoiceAnswer>> getAll() {
         return Optional.empty();
     }
 
     @Override
-    public Optional<Long> persist(User entity) {
+    public Optional<Long> persist(MultipleChoiceAnswer entity) {
         return Optional.empty();
     }
 
@@ -37,7 +35,7 @@ public class UserDao implements GenericDAO<User> {
     }
 
     @Override
-    public User find(Long id) {
+    public MultipleChoiceAnswer find(Long id) {
         return null;
     }
 }
