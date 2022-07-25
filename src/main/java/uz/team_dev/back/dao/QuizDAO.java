@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
 import uz.team_dev.back.domains.quiz.Quiz;
 import uz.team_dev.back.domains.subject.Subject;
+import uz.team_dev.back.enums.Level;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,78 +16,42 @@ import java.util.Optional;
  * date : 21, Thursday, 2022
  * project name : QuizzApp_hibernate
  */
-public class QuizDAO implements GenericDAO<Quiz> {
+public class QuizDAO extends GenericDAO<Quiz> {
 
 
-    private static SubjectDAO instance;
+    private static QuizDAO instance;
 
-    public static SubjectDAO getInstance() {
-        if (instance == null) instance = new SubjectDAO();
+    public static QuizDAO getInstance() {
+        if (instance == null) instance = new QuizDAO();
         return instance;
     }
 
+    public static void main(String[] args) {
 
+        UserDao userDao = UserDao.getInstance();
+        SubjectDAO subjectDAO = SubjectDAO.getInstance();
+        QuizDAO quizDao = QuizDAO.getInstance();
 
-    @Override
-    public Optional<List<Quiz>> getAll() {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        List<Quiz> quiz = session.createQuery("select t from Quiz t  ", Quiz.class).getResultList();
-        session.getTransaction().commit();
-        session.close();
-        System.out.println("quiz = " + quiz);
-        return Optional.ofNullable(quiz);
+        System.out.println(subjectDAO.find("select t from Subject t where t.id = :id", 2L).get());
+
+        Quiz build = Quiz.childBuilder()
+                .name("math 15")
+                .level(Level.EASY)
+                .created_by(
+                        userDao.find("select t from User t where id = :id", 1L).get()
+                )
+                .subject_id(
+                        subjectDAO.find("select t from Subject t where t.id = :id", 2L).get()
+                )
+                .build();
+
+//        quizDao.persist(build);
+
+        Optional<Quiz> quiz = quizDao.find("select t from Quiz t where t.id = :id", 1L);
+        System.out.println(quiz.get());
 
 
     }
 
-    @Override
-    public Optional<Long> persist(Quiz entity) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.persist(entity);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.empty();
-    }
 
-    @Override
-    public Optional<Boolean> delete(Long id) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.remove(id);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.empty();
-
-    }
-
-    @Override
-    public Optional<Boolean> update(Quiz entity) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.merge(entity);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.empty();
-
-    }
-
-    @Override
-    public Optional<Quiz> find(Long id) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        Query query = session.createQuery("select t from Quiz t where t.id =:id", Quiz.class);
-        query.setParameter("id", id);
-        Quiz quiz =(Quiz) query.getSingleResult();
-        System.out.println("quiz = " + quiz);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.ofNullable(quiz);
-    }
 }

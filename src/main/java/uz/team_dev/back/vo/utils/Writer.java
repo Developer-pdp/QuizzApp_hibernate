@@ -27,14 +27,14 @@ public class Writer {
         System.out.println(color + data + Color.RESET);
     }
 
-    public static void printMiddle(String text, int space, char with){
-        int mid = (space-text.length())/2;
+    public static void printMiddle(String text){
+        int mid = (60-text.length())/2;
         for (int i = 0; i < mid; i++) {
-            System.out.print(with);
+            System.out.print(' ');
         }
         Writer.print(text);
         for (int i = 0; i < mid; i++) {
-            System.out.print(with);
+            System.out.print(' ');
         }
     }
 
@@ -60,29 +60,26 @@ public class Writer {
         }
     }
 
-    public static void printlnMiddle(String text, int space){
-        printMiddle(text,space,' ', Color.GREEN);
-        Writer.println("");
-    }
-
     public static void printlnMiddle(String text){
         printMiddle(text,60,' ', Color.GREEN);
         Writer.println("");
     }
 
-    public static void printRight(String text, int space, char with, String color){
-        int mid = space-text.length();
+    public static void printlnMiddleERR(String text){
+        printMiddle(text,60,' ', Color.RED);
+        Writer.println("");
+    }
+
+    public static void printRight(String text,String color){
+        int mid = 60-text.length();
         for (int i = 0; i < mid; i++) {
-            System.out.print(with);
+            System.out.print(" ");
         }
         Writer.print(text,color);
     }
 
 
-    public static void printlnRight(String text, int space, char with, String color){
-        printRight(text,space,with,color);
-        Writer.println("");
-    }
+
 
     public static void printMiddleFixed(String text, int space, char with, String color) {
         int mid = (space - text.length()) / 2;

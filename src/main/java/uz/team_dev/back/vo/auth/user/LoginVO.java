@@ -1,4 +1,4 @@
-package uz.team_dev.back.vo.auth;
+package uz.team_dev.back.vo.auth.user;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthLoginVO {
+public class LoginVO {
     private String username;
     private String password;
 }

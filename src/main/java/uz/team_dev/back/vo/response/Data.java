@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Data<T> {
     private T body;
     private Integer total;
-    private boolean ok;
+    private boolean success;
     private ErrorVO error;
 
     public Data(T body) {
@@ -20,12 +20,12 @@ public class Data<T> {
     public Data(T body, Integer total) {
         this.body = body;
         this.total = total;
-        this.ok = true;
+        this.success = true;
     }
 
     public Data(ErrorVO error) {
         this.error = error;
-        this.ok = false;
+        this.success = false;
     }
 
     public static ErrorVO errorBuilder() {

@@ -3,6 +3,7 @@ package uz.team_dev.back.domains.questions;
 import jakarta.persistence.*;
 import lombok.*;
 import uz.team_dev.back.domains.Domain;
+import uz.team_dev.back.domains.quiz.Quiz;
 
 @Setter
 @Getter
@@ -18,8 +19,8 @@ public class ReOrder implements Domain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long question_id;
+    @ManyToOne
+    private Quiz quiz_id;
 
     @Column(nullable = false)
     private String question_body;
