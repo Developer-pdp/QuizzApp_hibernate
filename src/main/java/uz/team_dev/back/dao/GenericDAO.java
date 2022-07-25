@@ -4,19 +4,20 @@ import com.google.gson.Gson;
 import uz.team_dev.back.domains.Domain;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GenericDAO<T extends Domain> {
 
     Gson gson = new Gson();
 
-     List<T> getAll();
+     Optional<List<T>> getAll();
 
-    Long persist(T entity);
+    Optional<Long> persist(T entity);
 
-    boolean delete(Long id);
+    Optional<Boolean> delete(Long id);
 
-    boolean update(Long id);
+    Optional<Boolean> update(T entity);
 
-    T find(Long id);
+    Optional<T> find(Long id);
 
 }
