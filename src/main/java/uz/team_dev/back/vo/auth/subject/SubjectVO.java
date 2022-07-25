@@ -6,7 +6,6 @@ import uz.team_dev.back.domains.user.User;
 import uz.team_dev.back.vo.VO;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor

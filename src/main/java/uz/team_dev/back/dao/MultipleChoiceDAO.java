@@ -4,13 +4,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
+import uz.team_dev.back.domains.questions.FillingBlank;
 import uz.team_dev.back.domains.questions.MultipleChoice;
-import uz.team_dev.back.domains.user.User;
+import uz.team_dev.back.domains.questions.ReOrder;
 
 import java.util.List;
 import java.util.Optional;
 
-public class MultipleChoiceDAO implements GenericDAO<MultipleChoice>{
+public class MultipleChoiceDAO extends GenericDAO<MultipleChoice> {
 
     private static UserDao instance;
 
@@ -21,7 +22,7 @@ public class MultipleChoiceDAO implements GenericDAO<MultipleChoice>{
 
 
     @Override
-    public Optional<List<MultipleChoice>> getAll() {        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
+    public Optional<List<ReOrder>> getAll() {        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<MultipleChoice> multiple = session.createQuery("select t from MultipleChoice t ", MultipleChoice.class).getResultList();
@@ -31,7 +32,7 @@ public class MultipleChoiceDAO implements GenericDAO<MultipleChoice>{
     }
 
     @Override
-    public Optional<Long> persist(MultipleChoice entity) {
+    public Optional<Boolean> persist(MultipleChoice entity) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -64,7 +65,7 @@ public class MultipleChoiceDAO implements GenericDAO<MultipleChoice>{
     }
 
     @Override
-    public Optional<MultipleChoice> find(Long id) {
+    public Optional<FillingBlank> find(Long id) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();

@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
 import uz.team_dev.back.domains.Domain;
+import uz.team_dev.back.domains.questions.FillingBlank;
+import uz.team_dev.back.domains.questions.ReOrder;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -32,6 +34,8 @@ public abstract class  GenericDAO<T extends Domain> {
         return Optional.ofNullable(resultList);
     }
 
+    public abstract Optional<List<ReOrder>> getAll();
+
     public Optional<Boolean> persist(T entity){
         session = SESSION_FACTORY.openSession();
         session.getTransaction().begin();
@@ -52,6 +56,8 @@ public abstract class  GenericDAO<T extends Domain> {
         session.close();
         return Optional.of(true);
     }
+
+    public abstract Optional<Boolean> delete(Long id);
 
     public Optional<Boolean> update(T entity){
         session = SESSION_FACTORY.openSession();
@@ -90,4 +96,5 @@ public abstract class  GenericDAO<T extends Domain> {
         return Optional.ofNullable(singleResult);
     }
 
+    public abstract Optional<FillingBlank> find(Long id);
 }

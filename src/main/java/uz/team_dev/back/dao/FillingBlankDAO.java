@@ -5,12 +5,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
 import uz.team_dev.back.domains.questions.FillingBlank;
-import uz.team_dev.back.domains.user.User;
+import uz.team_dev.back.domains.questions.ReOrder;
 
 import java.util.List;
 import java.util.Optional;
 
-public class FillingBlankDAO implements  GenericDAO<FillingBlank>{
+public class FillingBlankDAO extends GenericDAO<FillingBlank> {
 
     private static UserDao instance;
 
@@ -20,7 +20,7 @@ public class FillingBlankDAO implements  GenericDAO<FillingBlank>{
     }
 
     @Override
-    public Optional<List<FillingBlank>> getAll() {
+    public Optional<List<ReOrder>> getAll() {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -32,7 +32,7 @@ public class FillingBlankDAO implements  GenericDAO<FillingBlank>{
     }
 
     @Override
-    public Optional<Long> persist(FillingBlank entity) {
+    public Optional<Boolean> persist(FillingBlank entity) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();

@@ -1,16 +1,16 @@
 package uz.team_dev.back.vo.auth.user;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import uz.team_dev.back.domains.user.Fullname;
 import uz.team_dev.back.domains.user.Login;
 import uz.team_dev.back.domains.user.User;
 import uz.team_dev.back.enums.Language;
 import uz.team_dev.back.enums.Role;
-import uz.team_dev.back.mapper.UserMapper;
 import uz.team_dev.back.vo.VO;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 
 @Getter

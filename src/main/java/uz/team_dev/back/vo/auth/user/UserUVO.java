@@ -1,6 +1,5 @@
 package uz.team_dev.back.vo.auth.user;
 
-import jakarta.persistence.GeneratedValue;
 import lombok.*;
 import uz.team_dev.back.domains.user.Fullname;
 import uz.team_dev.back.domains.user.Login;

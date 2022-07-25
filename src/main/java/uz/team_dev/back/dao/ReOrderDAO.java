@@ -4,12 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
+import uz.team_dev.back.domains.questions.FillingBlank;
 import uz.team_dev.back.domains.questions.ReOrder;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ReOrderDAO implements GenericDAO<ReOrder>{
+public class ReOrderDAO implements GenericDAO<ReOrder> {
 
     private static UserDao instance;
 
@@ -31,7 +32,7 @@ public class ReOrderDAO implements GenericDAO<ReOrder>{
     }
 
     @Override
-    public Optional<Long> persist(ReOrder entity) {
+    public Optional<Boolean> persist(ReOrder entity) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
@@ -63,7 +64,7 @@ public class ReOrderDAO implements GenericDAO<ReOrder>{
     }
 
     @Override
-    public Optional<ReOrder> find(Long id) {
+    public Optional<FillingBlank> find(Long id) {
         SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
