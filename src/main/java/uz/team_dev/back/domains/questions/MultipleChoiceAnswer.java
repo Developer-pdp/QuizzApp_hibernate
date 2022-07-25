@@ -17,9 +17,12 @@ public class MultipleChoiceAnswer implements Domain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne()
     private MultipleChoice multiple_choice_id;
 
     @Column(nullable = false)
     private String answer_body;
+
+    @Column(nullable = false)
+    private boolean isTrue;
 }

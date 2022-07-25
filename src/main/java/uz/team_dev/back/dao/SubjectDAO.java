@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import uz.team_dev.back.config.HibernateJavaConfigurer;
 import uz.team_dev.back.domains.subject.Subject;
+import uz.team_dev.back.domains.user.Fullname;
+import uz.team_dev.back.domains.user.Login;
+import uz.team_dev.back.domains.user.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +17,7 @@ import java.util.Optional;
  * date : 21, Thursday, 2022
  * project name : QuizzApp_hibernate
  */
-public class SubjectDAO implements GenericDAO<Subject> {
+public class SubjectDAO extends GenericDAO<Subject> {
 
     private static SubjectDAO instance;
 
@@ -23,64 +26,40 @@ public class SubjectDAO implements GenericDAO<Subject> {
         return instance;
     }
 
+    public static void main(String[] args) {
 
-    @Override
-    public Optional<List<Subject>> getAll() {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        List<Subject> subjects = session.createQuery("select t from Subject t ", Subject.class).getResultList();
-        session.getTransaction().commit();
-        session.close();
-        return Optional.ofNullable(subjects);
+        SubjectDAO subjectDAO = SubjectDAO.getInstance();
 
-    }
+        UserDao userDao = UserDao.getInstance();
 
-    @Override
-    public Optional<Long> persist(Subject subject) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.persist(subject);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.empty();
-    }
 
-    @Override
-    public Optional<Boolean> delete(Long id) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.remove(id);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.empty();
-    }
+//        if (userDao.find("select t from User t where id = :id", 2L).isPresent()) {
+//            User user1 = userDao.find("select t from User t where id = :id", 2L).get();
 
-    @Override
-    public Optional<Boolean> update(Subject entity) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.merge(entity);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.empty();
+                Subject subject = Subject.childBuilder()
+                        .name("math2")
+                        .description("des")
+                        .created_by(
+                                userDao.find("select t from User t where id = :id",1L).get())
+                        .build();
+
+//                subjectDAO.persist(subject, subject.getId());
+
+//            Subject subject = Subject.childBuilder()
+//                    .id(5L)
+//                    .description("math new")
+//                    .name("Math new")
+//                    .build();
+//
+
+
+//            Subject subject1 = subjectDAO.find("select t from Subject t where id = :id", 5L).get();
+
+            subjectDAO.delete("update Subject  set delete = true where id = :id",6L);
+
+//        }
+
 
     }
 
-    @Override
-    public Optional<Subject> find(Long id) {
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        Query query = session.createQuery("select t from Subject t where t.id =:id", Subject.class);
-        query.setParameter("id", id);
-        Subject singleResult = (Subject) query.getSingleResult();
-        System.out.println("singleResult = " + singleResult);
-        session.getTransaction().commit();
-        session.close();
-        return Optional.ofNullable(singleResult);
-    }
 }

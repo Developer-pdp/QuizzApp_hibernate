@@ -15,14 +15,15 @@ import uz.team_dev.back.domains.user.Fullname;
 import uz.team_dev.back.domains.user.Login;
 import uz.team_dev.back.domains.user.User;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString
 @Entity
 public class Subject extends Auditable implements Domain {
@@ -32,34 +33,18 @@ public class Subject extends Auditable implements Domain {
 
     private String description;
 
-    @OneToOne
-    @JoinColumn(name="created_by")
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn
     private User created_by;
 
-    public static void main(String[] args) {
-
-        User user = User.builder()
-                .fullname(new Fullname("VAli","mid","VAli"))
-                .login(new Login("1","Vali"))
-                .build();
-
-
-        UserDao userDao = UserDao.getInstance();
-        User user1 = userDao.find(2L).get();
-
-        Subject subject = Subject.builder()
-                .description("math")
-                .name("Math")
-                .created_by(user1)
-                .build();
-
-        SessionFactory sessionFactory = HibernateJavaConfigurer.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.getTransaction().begin();
-        session.persist(subject);
-        session.getTransaction().commit();
-        session.close();
-
+    @Builder(builderMethodName = "childBuilder")
+    public Subject(Long id,LocalDateTime created_at, LocalDateTime updated_at,
+                   boolean delete, String name, String description, User created_by) {
+        super(id,  created_at, updated_at, delete);
+        this.name = name;
+        this.description = description;
+        this.created_by = created_by;
     }
+
 
 }

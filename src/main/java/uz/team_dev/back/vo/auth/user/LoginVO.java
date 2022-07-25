@@ -1,4 +1,4 @@
-package uz.team_dev.back.vo.auth;
+package uz.team_dev.back.vo.auth.user;
 
 import lombok.*;
 

@@ -19,7 +19,7 @@ public class ReOrder implements Domain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private Quiz quiz_id;
 
     @Column(nullable = false)

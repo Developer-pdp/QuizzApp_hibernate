@@ -5,38 +5,14 @@ import uz.team_dev.back.domains.questions.MultipleChoice;
 import java.util.List;
 import java.util.Optional;
 
-public class MultipleChoiceDAO implements GenericDAO<MultipleChoice>{
+public class MultipleChoiceDAO extends GenericDAO<MultipleChoice>{
 
-    private static UserDao instance;
+    private static MultipleChoiceDAO instance;
 
-    public static UserDao getInstance() {
-        if (instance == null) instance = new UserDao();
+    public static MultipleChoiceDAO getInstance() {
+        if (instance == null) instance = new MultipleChoiceDAO();
         return instance;
     }
 
 
-    @Override
-    public Optional<List<MultipleChoice>> getAll() {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Long> persist(MultipleChoice entity) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Boolean> delete(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Boolean> update(MultipleChoice entity) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<MultipleChoice> find(Long id) {
-        return null;
-    }
 }

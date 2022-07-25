@@ -6,8 +6,9 @@ import uz.team_dev.back.domains.user.Login;
 import uz.team_dev.back.domains.user.User;
 import uz.team_dev.back.enums.Role;
 import uz.team_dev.back.service.UserService;
-import uz.team_dev.back.vo.auth.LoginVO;
-import uz.team_dev.back.vo.auth.UserVO;
+import uz.team_dev.back.vo.auth.user.LoginVO;
+import uz.team_dev.back.vo.auth.user.UserCreateVO;
+import uz.team_dev.back.vo.auth.user.UserVO;
 import uz.team_dev.back.vo.response.Data;
 import uz.team_dev.back.vo.utils.Color;
 import uz.team_dev.back.vo.utils.Reader;
@@ -31,9 +32,15 @@ public class MainMenu {
             default -> main(args);
         }
 
+        main(args);
+
     }
 
     private static void signup() {
+
+        int i = Reader.readIntMiddle("Choose your Role \n" +
+                " 1 -> Teacher \n" +
+                " 2 -> Student ");
 
         String firstname = Reader.readLineMiddle("Enter your first name: ");
         String middle = Reader.readLineMiddle("Enter your middle name: ");
@@ -41,13 +48,13 @@ public class MainMenu {
         String username = Reader.readLineMiddle("Enter your username: ");
         String password = Reader.readLineMiddle("Enter your password: ");
 
-        User user = User.builder()
+        UserCreateVO userCreateVO = UserCreateVO.builder()
                 .fullname(new Fullname(firstname,middle,last))
                 .login(new Login(username,password))
-                .role(Role.ADMIN)
+                .role(i==1?Role.TEACHER:Role.STUDENT)
                 .build();
 
-        userService.persist(user);
+        userService.persist(userCreateVO);
     }
 
     private static void signin() {
@@ -59,10 +66,12 @@ public class MainMenu {
 
         Data<UserVO> login = userService.login(loginVO).getData();
 
+        System.out.println(login.getBody().toString());
+        System.out.println(login.isSuccess());
         if (login.isSuccess()) {
             UserVO body = login.getBody();
             UserSession.getSession().setUserVO(body);
-
+            System.out.println(UserSession.getSession().getUserVO().getRole());
             if (UserSession.getSession().getUserVO().getRole() == Role.ADMIN)
                 AdminPage.menu();
             else UserPage.menu();
